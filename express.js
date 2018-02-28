@@ -36,9 +36,9 @@ const express = () => {
             throw new Error('server is not started')
         }
 
-        const urlMidddlewares = middlewares[url]
         const request = {}
         const respond = {}
+        const urlMidddlewares = middlewares[url]
 
         if (urlMidddlewares) {
             urlMidddlewares.reduce(_middlewareCallback.bind(null, request, respond), true)
