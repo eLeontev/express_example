@@ -14,7 +14,7 @@ const express = () => {
         }
     } 
 
-    const get = (url, handler) => handlers.get = { [url]: handlers[url] ||  handler }
+    const get = (url, handler) => handlers.get = { [url]: handlers[url] || handler }
 
     const listen = () => isStarted = true
 
