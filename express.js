@@ -47,7 +47,6 @@ const express = () => {
         handlers.get[url](request, respond)
     }
 
-
     return {
         use,
         get,
