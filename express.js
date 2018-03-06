@@ -39,9 +39,14 @@ const express = () => {
         const request = {}
         const respond = {}
         const urlMidddlewares = middlewares[url]
-        const middlewareCallback = (request, respond) => (previousWasCalled, middleware) => _middlewareCallback(request, respond, previousWasCalled, middleware);
+        const middlewareCallback = (request, respond) => {
+            return (previousWasCalled, middleware) => {
+                return _middlewareCallback(request, respond, previousWasCalled, middleware);
+            }
+        }
 
         if (urlMidddlewares) {
+            // or _middlewareCallback.bind(null, request, respond)
             urlMidddlewares.reduce(middlewareCallback(request, respond), true)
         }
 
