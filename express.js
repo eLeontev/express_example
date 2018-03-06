@@ -39,9 +39,10 @@ const express = () => {
         const request = {}
         const respond = {}
         const urlMidddlewares = middlewares[url]
+        const middlewareCallback = (request, respond) => (previousWasCalled, middleware) => _middlewareCallback(request, respond, previousWasCalled, middleware);
 
         if (urlMidddlewares) {
-            urlMidddlewares.reduce(_middlewareCallback.bind(null, request, respond), true)
+            urlMidddlewares.reduce(middlewareCallback(request, respond), true)
         }
 
         handlers.get[url](request, respond)
